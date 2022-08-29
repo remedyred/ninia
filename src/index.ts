@@ -1,7 +1,6 @@
 import {Ninia, PromiseResolve} from './Ninia'
 import {Store} from './Store'
 
-export {Ninia, Store}
 export const ninia = new Ninia()
 
 export function createStore(name = 'default', options = {}, hydration = {}) {
@@ -42,3 +41,6 @@ useStore.promise = async (name = 'default') => {
 	}
 	return ninia.get(name)
 }
+
+export {Ninia} from './Ninia'
+export {Store} from './Store'
