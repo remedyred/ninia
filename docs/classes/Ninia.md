@@ -39,19 +39,19 @@ ___
 
 ### pending
 
-• **pending**: `Pending` = `{}`
+• **pending**: [`Pending`](../README.md#pending) = `{}`
 
 ___
 
 ### stores
 
-• **stores**: `Stores` = `{}`
+• **stores**: [`Stores`](../README.md#stores) = `{}`
 
 ___
 
 ### waiting
 
-• **waiting**: `Waiting` = `{}`
+• **waiting**: [`Waiting`](../README.md#waiting) = `{}`
 
 ## Methods
 
@@ -155,7 +155,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `id` | `string` |
-| `resolve` | `PromiseResolve`<`any`\> |
+| `resolve` | [`PromiseResolve`](../README.md#promiseresolve)<`any`\> |
 
 #### Returns
 
