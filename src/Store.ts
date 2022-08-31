@@ -85,7 +85,6 @@ export class Store {
 				if (this.$has(prop)) {
 					return this.$get(prop)
 				}
-				return undefined
 			},
 			set: (target: Store, prop: string, value: any) => {
 				this.$set(prop, value)
@@ -98,7 +97,6 @@ export class Store {
 				if (key in target) {
 					return this.callGetter(key)
 				}
-				return undefined
 			}
 		})
 
@@ -132,7 +130,7 @@ export class Store {
 	}
 
 	$config(name: string, options?: Partial<StoreOptions>, hydration?: StoreState) {
-		let isPending = !options && !hydration
+		const isPending = !options && !hydration
 		if (!options) {
 			options = {}
 		}
@@ -148,14 +146,14 @@ export class Store {
 
 		if (!isPending) {
 			this.originalState = objectClone(hydration)
-			for (let key in hydration) {
+			for (const key in hydration) {
 				this.state[key] = hydration[key]
 			}
 		}
 
 		this.actions = actions || {}
 
-		for (let key in getters) {
+		for (const key in getters) {
 			this.getters[key] = getters[key].bind(this, this.$state)
 		}
 
@@ -179,7 +177,7 @@ export class Store {
 	}
 
 	$patch(data: StoreState) {
-		for (let key in data) {
+		for (const key in data) {
 			this.$set(key, data[key])
 		}
 	}

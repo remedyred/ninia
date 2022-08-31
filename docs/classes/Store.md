@@ -43,14 +43,14 @@
 | Name | Type |
 | :------ | :------ |
 | `name` | `string` |
-| `options?` | `Partial`<`StoreOptions`\> |
-| `hydration?` | `StoreState` |
+| `options?` | `Partial`<[`StoreOptions`](../interfaces/StoreOptions.md)\> |
+| `hydration?` | [`StoreState`](../interfaces/StoreState.md) |
 
 ## Properties
 
 ### options
 
-• **options**: `StoreOptions`
+• **options**: [`StoreOptions`](../interfaces/StoreOptions.md)
 
 ## Accessors
 
@@ -83,8 +83,8 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `name` | `string` |
-| `options?` | `Partial`<`StoreOptions`\> |
-| `hydration?` | `StoreState` |
+| `options?` | `Partial`<[`StoreOptions`](../interfaces/StoreOptions.md)\> |
+| `hydration?` | [`StoreState`](../interfaces/StoreState.md) |
 
 #### Returns
 
@@ -193,7 +193,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `data` | `StoreState` |
+| `data` | [`StoreState`](../interfaces/StoreState.md) |
 
 #### Returns
 
