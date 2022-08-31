@@ -32,7 +32,7 @@
 		"testEnvironment": "node"
 	},
 	"dependencies": {
-		"@snickbit/utilities": "3.2.0",
+		"@snickbit/utilities": "3.4.2",
 		"mitt": "3.0.0"
 	},
 	"devDependencies": {
