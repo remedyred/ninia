@@ -1,6 +1,6 @@
 {
 	"name": "@snickbit/ninia",
-	"version": "0.0.25",
+	"version": "0.0.26",
 	"description": "Teeny tiny Node.js composition stores",
 	"license": "MIT",
 	"exports": {
