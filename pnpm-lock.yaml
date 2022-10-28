@@ -11,7 +11,7 @@ specifiers:
   semantic-release: 19.0.5
   shx: 0.3.4
   ts-jest: 29.0.3
-  tsup: 6.2.3
+  tsup: 6.3.0
   typedoc: 0.23.13
   typedoc-plugin-markdown: 3.13.6
   typescript: 4.8.4
@@ -29,7 +29,7 @@ devDependencies:
   semantic-release: 19.0.5
   shx: 0.3.4
   ts-jest: 29.0.3_dumbvrct63pfrpr77jabzndvbq
-  tsup: 6.2.3_typescript@4.8.4
+  tsup: 6.3.0_typescript@4.8.4
   typedoc: 0.23.13_typescript@4.8.4
   typedoc-plugin-markdown: 3.13.6_typedoc@0.23.13
   typescript: 4.8.4
@@ -5102,8 +5102,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tsup/6.2.3_typescript@4.8.4:
-    resolution: {integrity: sha512-J5Pu2Dx0E1wlpIEsVFv9ryzP1pZ1OYsJ2cBHZ7GrKteytNdzaSz5hmLX7/nAxtypq+jVkVvA79d7S83ETgHQ5w==}
+  /tsup/6.3.0_typescript@4.8.4:
+    resolution: {integrity: sha512-IaNQO/o1rFgadLhNonVKNCT2cks+vvnWX3DnL8sB87lBDqRvJXHENr5lSPJlqwplUlDxSwZK8dSg87rgBu6Emw==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
