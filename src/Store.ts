@@ -1,6 +1,6 @@
 import {objectClone} from '@snickbit/utilities'
 import {Handler} from 'mitt'
-import {ninia} from './factory'
+import {useNinia} from './factory'
 
 export type StoreKey = string
 export type StoreValue = any
@@ -52,6 +52,8 @@ export class Store {
 	protected id = (...keys: string[]) => ['ninia', this.$id, ...keys].join('.')
 
 	constructor(name: string, options?: Partial<StoreOptions>, hydration?: StoreState) {
+		this.ninia = useNinia()
+
 		this.$config(name, options, hydration)
 
 		this.proxy = new Proxy(this, {
@@ -187,14 +189,14 @@ export class Store {
 	}
 
 	$on(event: string, callback: Handler) {
-		ninia.on(this.id(event), callback)
+		this.ninia.on(this.id(event), callback)
 	}
 
 	$off(event: string, callback: Handler) {
-		ninia.off(this.id(event), callback)
+		this.ninia.off(this.id(event), callback)
 	}
 
 	$emit(event: string, data: any) {
-		ninia.emit(this.id(event), data)
+		this.ninia.emit(this.id(event), data)
 	}
 }
