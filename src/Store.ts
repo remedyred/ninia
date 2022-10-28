@@ -1,5 +1,6 @@
 import {objectClone} from '@snickbit/utilities'
 import {Handler} from 'mitt'
+import {Ninia} from './Ninia'
 import {useNinia} from './factory'
 
 export interface StoreOptions {
@@ -31,6 +32,8 @@ export class Store<State extends object = any> {
 	private readonly $getters: ProxyHandler<StoreGetters>
 
 	protected ready = false
+
+	private readonly ninia: Ninia
 
 	options: StoreOptions = {
 		name: 'default',
