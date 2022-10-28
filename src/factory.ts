@@ -9,7 +9,11 @@ export function useNinia() {
 	return _ninia
 }
 
-export function createStore<State extends object = any>(name = 'default', options: Partial<StoreOptions> = {}, hydration: State = {} as State): Store<State> {
+export function createStore<
+	State extends object = any
+	>(name = 'default',
+	options: Partial<StoreOptions> = {},
+	hydration: State = {} as State): Store<State> {
 	const ninia = useNinia()
 
 	if (!ninia.get(name)) {
