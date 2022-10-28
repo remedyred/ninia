@@ -1,5 +1,5 @@
 import {Ninia, PromiseResolve} from './Ninia'
-import {Store} from './Store'
+import {Store, StoreOptions} from './Store'
 
 let _ninia: Ninia
 export function useNinia() {
@@ -9,7 +9,7 @@ export function useNinia() {
 	return _ninia
 }
 
-export function createStore(name = 'default', options = {}, hydration = {}) {
+export function createStore<State extends object = any>(name = 'default', options: Partial<StoreOptions> = {}, hydration: State = {} as State): Store<State> {
 	const ninia = useNinia()
 
 	if (!ninia.get(name)) {
@@ -19,7 +19,7 @@ export function createStore(name = 'default', options = {}, hydration = {}) {
 			store = ninia.pending[name]
 			store.$config(name, options, hydration)
 		} else {
-			store = new Store(name, options, hydration)
+			store = new Store<State>(name, options, hydration)
 		}
 
 		ninia.set(name, store)
@@ -28,32 +28,30 @@ export function createStore(name = 'default', options = {}, hydration = {}) {
 	return ninia.get(name)
 }
 
-function createPending(name = 'default') {
+function createPending<State extends object = any>(name = 'default'): Store<State> {
 	const ninia = useNinia()
 
-	ninia.pending[name] = new Store(name)
+	ninia.pending[name] = new Store<State>(name)
 
 	return ninia.pending[name]
 }
 
-export function useStore(name = 'default') {
+export function useStore<State extends object = any>(name = 'default'): Store<State> {
 	const ninia = useNinia()
 
 	if (!ninia.get(name)) {
-		return createPending(name)
+		return createPending<State>(name)
 	}
 
-	return ninia.get(name)
+	return ninia.get(name) as Store<State>
 }
 
-useStore.promise = async (name = 'default') => {
+useStore.promise = async <State extends object = any>(name = 'default'): Promise<Store<State>> => {
 	const ninia = useNinia()
 
 	if (!ninia.get(name)) {
-		return new Promise((resolve: PromiseResolve<any>) => {
-			ninia.wait(name, resolve)
-		})
+		return new Promise((resolve: PromiseResolve<any>) => ninia.wait(name, resolve))
 	}
 
-	return ninia.get(name)
+	return ninia.get(name) as Store<State>
 }

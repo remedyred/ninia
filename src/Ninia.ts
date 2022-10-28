@@ -41,7 +41,7 @@ export class Ninia {
 		this.waiting[id].push(resolve)
 	}
 
-	get(id: StoreId) {
+	get(id: StoreId): Store {
 		return this.stores[id]
 	}
 
