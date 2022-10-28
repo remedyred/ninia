@@ -12,7 +12,7 @@ specifiers:
   shx: 0.3.4
   ts-jest: 29.0.3
   tsup: 6.3.0
-  typedoc: 0.23.13
+  typedoc: 0.23.19
   typedoc-plugin-markdown: 3.13.6
   typescript: 4.8.4
 
@@ -30,8 +30,8 @@ devDependencies:
   shx: 0.3.4
   ts-jest: 29.0.3_dumbvrct63pfrpr77jabzndvbq
   tsup: 6.3.0_typescript@4.8.4
-  typedoc: 0.23.13_typescript@4.8.4
-  typedoc-plugin-markdown: 3.13.6_typedoc@0.23.13
+  typedoc: 0.23.19_typescript@4.8.4
+  typedoc-plugin-markdown: 3.13.6_typedoc@0.23.19
   typescript: 4.8.4
 
 packages:
@@ -5191,17 +5191,17 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /typedoc-plugin-markdown/3.13.6_typedoc@0.23.13:
+  /typedoc-plugin-markdown/3.13.6_typedoc@0.23.19:
     resolution: {integrity: sha512-ISSc9v3BK7HkokxSBuJPttXox4tJ6hP0N9wfSIk0fmLN67+eqtAxbk97gs2nDiuha+RTO5eW9gdeAb+RPP0mgg==}
     peerDependencies:
       typedoc: '>=0.23.0'
     dependencies:
       handlebars: 4.7.7
-      typedoc: 0.23.13_typescript@4.8.4
+      typedoc: 0.23.19_typescript@4.8.4
     dev: true
 
-  /typedoc/0.23.13_typescript@4.8.4:
-    resolution: {integrity: sha512-47VgWyZ5Q8g5dtJxjIHvFqX7ZD+YQRLAFRhLjt6v9KW0//feHtLUrbukHkKcvQuua1xQtdvkQ17fCjmF7qLXlg==}
+  /typedoc/0.23.19_typescript@4.8.4:
+    resolution: {integrity: sha512-70jPL0GQnSJtgQqI7ifOWxpTXrB3sxc4SWPPRn3K0wdx3txI6ZIT/ZYMF39dNg2Gjmql45cO+cAKXJp0TpqOVA==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
