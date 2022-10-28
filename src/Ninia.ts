@@ -12,6 +12,7 @@ export type PromiseResolve<T> = (value?: PromiseLike<T> | T) => void
 export type WaitingArray = PromiseResolve<any>[]
 export type Waiting = Record<StoreId, WaitingArray>
 
+// noinspection JSUnusedGlobalSymbols
 export class Ninia {
 	stores: Stores = {}
 

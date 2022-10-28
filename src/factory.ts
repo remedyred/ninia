@@ -41,6 +41,3 @@ useStore.promise = async (name = 'default') => {
 	}
 	return ninia.get(name)
 }
-
-export {Ninia, Pending, PromiseResolve, StoreId, Stores, Waiting, WaitingArray} from './Ninia'
-export {Store, StoreOptions, StoreKey, StoreValue, StoreState, StoreAction, StoreGetter, StoreActions, StoreGetters} from './Store'

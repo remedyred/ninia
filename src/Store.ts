@@ -1,6 +1,6 @@
 import {objectClone} from '@snickbit/utilities'
 import {Handler} from 'mitt'
-import {ninia} from './index'
+import {ninia} from './factory'
 
 export type StoreKey = string
 export type StoreValue = any
