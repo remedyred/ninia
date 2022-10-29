@@ -124,12 +124,8 @@ export class Store<State extends object = any> {
 
 	$config(name: string, options?: Partial<StoreOptions>, hydration?: State) {
 		const isPending = !options && !hydration
-		if (!options) {
-			options = {}
-		}
-		if (!hydration) {
-			hydration = {} as State
-		}
+		options ||= {}
+		hydration ||= {} as State
 		const {actions, getters, ...rest} = options
 		this.options = {
 			...this.options,

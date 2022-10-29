@@ -3,9 +3,7 @@ import {Store, StoreOptions} from './Store'
 
 let _ninia: Ninia
 export function useNinia() {
-	if (!_ninia) {
-		_ninia = new Ninia()
-	}
+	_ninia ||= new Ninia()
 	return _ninia
 }
 

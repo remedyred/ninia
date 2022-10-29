@@ -35,9 +35,7 @@ export class Ninia {
 	}
 
 	wait(id: StoreId, resolve: PromiseResolve<any>): void {
-		if (!this.waiting[id]) {
-			this.waiting[id] = []
-		}
+		this.waiting[id] ||= []
 		this.waiting[id].push(resolve)
 	}
 
