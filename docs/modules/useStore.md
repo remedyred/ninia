@@ -10,7 +10,13 @@
 
 ### promise
 
-▸ **promise**(`name?`): `Promise`<`any`\>
+▸ **promise**<`State`\>(`name?`): `Promise`<[`Store`](../classes/Store.md)<`State`\>\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `State` | extends `object` = `any` |
 
 #### Parameters
 
@@ -20,4 +26,4 @@
 
 #### Returns
 
-`Promise`<`any`\>
+`Promise`<[`Store`](../classes/Store.md)<`State`\>\>
