@@ -1,9 +1,5 @@
 # Interface: StoreOptions
 
-## Indexable
-
-▪ [key: `string`]: `any`
-
 ## Table of contents
 
 ### Properties

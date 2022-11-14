@@ -1,48 +1,39 @@
 import {objectClone} from '@snickbit/utilities'
 import {Handler} from 'mitt'
-import {ninia} from './index'
-
-export type StoreKey = string
-export type StoreValue = any
+import {Ninia} from './Ninia'
+import {useNinia} from './factory'
 
 export interface StoreOptions {
 	name: string
 	persist?: string[] | boolean
 	getters?: StoreGetters
 	actions?: StoreActions
-
-	[key: string]: any
 }
-
-export interface StoreState {
-	[key: StoreKey]: StoreValue
-}
-
-export type WatchStop = () => void
-export type Watchers = Record<string, WatchStop>
 
 export type StoreAction = (this: Store, ...args: any[]) => any
-export type StoreGetter = (this: Store) => StoreValue
+export type StoreGetter = (this: Store) => any
 
 export type StoreActions = Record<string, StoreAction>
 export type StoreGetters = Record<string, StoreGetter>
 
-export interface Store {
-	[key: string | symbol]: any
-}
+// noinspection JSUnusedGlobalSymbols
+export class Store<State extends object = any> {
+	protected state: State = {} as State
+	private readonly $state: ProxyHandler<State>
 
-export class Store {
-	protected state: StoreState = {}
-
-	protected originalState: StoreState = {}
+	protected originalState: State = {} as State
 
 	protected proxy: Store
 
 	protected actions: StoreActions = {}
+	private readonly $actions: ProxyHandler<StoreActions>
 
 	protected getters: StoreGetters = {}
+	private readonly $getters: ProxyHandler<StoreGetters>
 
 	protected ready = false
+
+	private readonly ninia: Ninia
 
 	options: StoreOptions = {
 		name: 'default',
@@ -51,11 +42,13 @@ export class Store {
 
 	protected id = (...keys: string[]) => ['ninia', this.$id, ...keys].join('.')
 
-	constructor(name: string, options?: Partial<StoreOptions>, hydration?: StoreState) {
+	constructor(name: string, options?: Partial<StoreOptions>, hydration?: State) {
+		this.ninia = useNinia()
+
 		this.$config(name, options, hydration)
 
 		this.proxy = new Proxy(this, {
-			get(target: Store, prop: string, receiver?: any): any {
+			get(target: Store<State>, prop: string, receiver?: any): any {
 				if (prop in target) {
 					return target[prop]
 				}
@@ -74,26 +67,26 @@ export class Store {
 
 				return Reflect.get(target, prop, receiver)
 			},
-			set(target: Store, prop: string, value?: any) {
+			set(target: Store<State>, prop: string, value?: any) {
 				target.$set(prop, value)
 				return true
 			}
 		})
 
 		this.$state = new Proxy(this.state, {
-			get: (target: Store, prop: string) => {
+			get: (target: State, prop: string) => {
 				if (this.$has(prop)) {
 					return this.$get(prop)
 				}
 			},
-			set: (target: Store, prop: string, value: any) => {
+			set: (target: State, prop: string, value: any) => {
 				this.$set(prop, value)
 				return true
 			}
 		})
 
 		this.$getters = new Proxy(this.getters, {
-			get: (target: Store, key: string) => {
+			get: (target: StoreGetters, key: string) => {
 				if (key in target) {
 					return this.callGetter(key)
 				}
@@ -101,7 +94,7 @@ export class Store {
 		})
 
 		this.$actions = new Proxy(this.actions, {
-			get: (target, key: string) => {
+			get: (target: StoreActions, key: string) => {
 				if (key in target) {
 					return this.callAction.bind(this, key)
 				}
@@ -129,14 +122,10 @@ export class Store {
 		return this.getters[name]
 	}
 
-	$config(name: string, options?: Partial<StoreOptions>, hydration?: StoreState) {
+	$config(name: string, options?: Partial<StoreOptions>, hydration?: State) {
 		const isPending = !options && !hydration
-		if (!options) {
-			options = {}
-		}
-		if (!hydration) {
-			hydration = {}
-		}
+		options ||= {}
+		hydration ||= {} as State
 		const {actions, getters, ...rest} = options
 		this.options = {
 			...this.options,
@@ -160,15 +149,15 @@ export class Store {
 		this.ready = !isPending
 	}
 
-	$get(key: StoreKey) {
+	$get(key: string) {
 		return this.state[key]
 	}
 
-	$set(key: StoreKey, value: StoreValue) {
+	$set(key: string, value: any) {
 		this.state[key] = value
 	}
 
-	$has(key: StoreKey) {
+	$has(key: string) {
 		return key in this.state
 	}
 
@@ -176,7 +165,7 @@ export class Store {
 		return Object.keys(this.state)
 	}
 
-	$patch(data: StoreState) {
+	$patch(data: Partial<State>) {
 		for (const key in data) {
 			this.$set(key, data[key])
 		}
@@ -187,14 +176,14 @@ export class Store {
 	}
 
 	$on(event: string, callback: Handler) {
-		ninia.on(this.id(event), callback)
+		this.ninia.on(this.id(event), callback)
 	}
 
 	$off(event: string, callback: Handler) {
-		ninia.off(this.id(event), callback)
+		this.ninia.off(this.id(event), callback)
 	}
 
 	$emit(event: string, data: any) {
-		ninia.emit(this.id(event), data)
+		this.ninia.emit(this.id(event), data)
 	}
 }

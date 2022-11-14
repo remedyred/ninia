@@ -12,6 +12,7 @@ export type PromiseResolve<T> = (value?: PromiseLike<T> | T) => void
 export type WaitingArray = PromiseResolve<any>[]
 export type Waiting = Record<StoreId, WaitingArray>
 
+// noinspection JSUnusedGlobalSymbols
 export class Ninia {
 	stores: Stores = {}
 
@@ -34,13 +35,11 @@ export class Ninia {
 	}
 
 	wait(id: StoreId, resolve: PromiseResolve<any>): void {
-		if (!this.waiting[id]) {
-			this.waiting[id] = []
-		}
+		this.waiting[id] ||= []
 		this.waiting[id].push(resolve)
 	}
 
-	get(id: StoreId) {
+	get(id: StoreId): Store {
 		return this.stores[id]
 	}
 

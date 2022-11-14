@@ -83,7 +83,7 @@ ___
 
 ### get
 
-▸ **get**(`id`): [`Store`](Store.md)
+▸ **get**(`id`): [`Store`](Store.md)<`any`\>
 
 #### Parameters
 
@@ -93,7 +93,7 @@ ___
 
 #### Returns
 
-[`Store`](Store.md)
+[`Store`](Store.md)<`any`\>
 
 ___
 
@@ -138,7 +138,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `id` | `string` |
-| `value` | [`Store`](Store.md) |
+| `value` | [`Store`](Store.md)<`any`\> |
 
 #### Returns
 

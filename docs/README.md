@@ -14,7 +14,6 @@
 ### Interfaces
 
 - [StoreOptions](interfaces/StoreOptions.md)
-- [StoreState](interfaces/StoreState.md)
 
 ### Type Aliases
 
@@ -25,19 +24,14 @@
 - [StoreGetter](README.md#storegetter)
 - [StoreGetters](README.md#storegetters)
 - [StoreId](README.md#storeid)
-- [StoreKey](README.md#storekey)
-- [StoreValue](README.md#storevalue)
 - [Stores](README.md#stores)
 - [Waiting](README.md#waiting)
 - [WaitingArray](README.md#waitingarray)
 
-### Variables
-
-- [ninia](README.md#ninia)
-
 ### Functions
 
 - [createStore](README.md#createstore)
+- [useNinia](README.md#useninia)
 - [useStore](README.md#usestore)
 
 ## Type Aliases
@@ -103,11 +97,11 @@ ___
 
 ### StoreGetter
 
-Ƭ **StoreGetter**: (`this`: [`Store`](classes/Store.md)) => [`StoreValue`](README.md#storevalue)
+Ƭ **StoreGetter**: (`this`: [`Store`](classes/Store.md)) => `any`
 
 #### Type declaration
 
-▸ (`this`): [`StoreValue`](README.md#storevalue)
+▸ (`this`): `any`
 
 ##### Parameters
 
@@ -117,7 +111,7 @@ ___
 
 ##### Returns
 
-[`StoreValue`](README.md#storevalue)
+`any`
 
 ___
 
@@ -130,18 +124,6 @@ ___
 ### StoreId
 
 Ƭ **StoreId**: `string`
-
-___
-
-### StoreKey
-
-Ƭ **StoreKey**: `string`
-
-___
-
-### StoreValue
-
-Ƭ **StoreValue**: `any`
 
 ___
 
@@ -161,35 +143,51 @@ ___
 
 Ƭ **WaitingArray**: [`PromiseResolve`](README.md#promiseresolve)<`any`\>[]
 
-## Variables
-
-### ninia
-
-• `Const` **ninia**: [`Ninia`](classes/Ninia.md)
-
 ## Functions
 
 ### createStore
 
-▸ **createStore**(`name?`, `options?`, `hydration?`): [`Store`](classes/Store.md)
+▸ **createStore**<`State`\>(`name?`, `options?`, `hydration?`): [`Store`](classes/Store.md)<`State`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `State` | extends `object` = `any` |
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `name` | `string` | `'default'` |
-| `options` | `Object` | `{}` |
-| `hydration` | `Object` | `{}` |
+| `options` | `Partial`<[`StoreOptions`](interfaces/StoreOptions.md)\> | `{}` |
+| `hydration` | `State` | `undefined` |
 
 #### Returns
 
-[`Store`](classes/Store.md)
+[`Store`](classes/Store.md)<`State`\>
+
+___
+
+### useNinia
+
+▸ **useNinia**(): [`Ninia`](classes/Ninia.md)
+
+#### Returns
+
+[`Ninia`](classes/Ninia.md)
 
 ___
 
 ### useStore
 
-▸ **useStore**(`name?`): [`Store`](classes/Store.md)
+▸ **useStore**<`State`\>(`name?`): [`Store`](classes/Store.md)<`State`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `State` | extends `object` = `any` |
 
 #### Parameters
 
@@ -199,4 +197,4 @@ ___
 
 #### Returns
 
-[`Store`](classes/Store.md)
+[`Store`](classes/Store.md)<`State`\>

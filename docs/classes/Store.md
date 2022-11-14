@@ -1,8 +1,10 @@
-# Class: Store
+# Class: Store<State\>
 
-## Indexable
+## Type parameters
 
-▪ [key: `string` \| `symbol`]: `any`
+| Name | Type |
+| :------ | :------ |
+| `State` | extends `object` = `any` |
 
 ## Table of contents
 
@@ -36,7 +38,13 @@
 
 ### constructor
 
-• **new Store**(`name`, `options?`, `hydration?`)
+• **new Store**<`State`\>(`name`, `options?`, `hydration?`)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `State` | extends `object` = `any` |
 
 #### Parameters
 
@@ -44,7 +52,7 @@
 | :------ | :------ |
 | `name` | `string` |
 | `options?` | `Partial`<[`StoreOptions`](../interfaces/StoreOptions.md)\> |
-| `hydration?` | [`StoreState`](../interfaces/StoreState.md) |
+| `hydration?` | `State` |
 
 ## Properties
 
@@ -84,7 +92,7 @@ ___
 | :------ | :------ |
 | `name` | `string` |
 | `options?` | `Partial`<[`StoreOptions`](../interfaces/StoreOptions.md)\> |
-| `hydration?` | [`StoreState`](../interfaces/StoreState.md) |
+| `hydration?` | `State` |
 
 #### Returns
 
@@ -193,7 +201,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `data` | [`StoreState`](../interfaces/StoreState.md) |
+| `data` | `Partial`<`State`\> |
 
 #### Returns
 
